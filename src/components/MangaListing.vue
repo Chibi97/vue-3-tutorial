@@ -37,8 +37,8 @@ const sortingMode = ref('asc');
 
 const readingListStore = useReadingListStore();
 
-const { data: comicData } = await axios.get('http://localhost:9000/comics');
-const { data: genreData } = await axios.get('http://localhost:9000/genres');
+const { data: comicData } = await axios.get('http://localhost:7777/comics');
+const { data: genreData } = await axios.get('http://localhost:7777/genres');
 
 comics.value = comicData;
 genres.value = genreData;
@@ -105,8 +105,8 @@ export default {
     const selectedSortingOption = ref('score');
     const sortingMode = ref('asc');
 
-    const { data: comicData } = await axios.get('http://localhost:9000/comics');
-    const { data: genreData } = await axios.get('http://localhost:9000/genres');
+    const { data: comicData } = await axios.get('http://localhost:7777/comics');
+    const { data: genreData } = await axios.get('http://localhost:7777/genres');
 
     comics.value = comicData;
     genres.value = genreData;
