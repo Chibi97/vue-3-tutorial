@@ -5,25 +5,29 @@ Experiment with new Vue 3 features while teaching Vue core principles.
 ## Project Setup
 
 ```sh
-yarn
+npm install
 ```
 
-### Run json-server to simulate API
+### Create .env file in the project root
+
+Copy the contents of `.env.example` and change the port if needed
 
 ```sh
-json-server --watch db.json --port=9000
+cp .env.example .env
+```
+
+### Run start script to simulate REST API
+
+The script will call `json-server` in order to expose API routes
+
+```sh
+npm run start
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-yarn dev
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-yarn lint
+npm run dev
 ```
 
 ### Recommended IDE Setup
