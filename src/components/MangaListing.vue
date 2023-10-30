@@ -27,6 +27,7 @@ import { useReadingListStore } from '@/stores/readingList';
 import MangaItem from '@/components/MangaItem.vue';
 import FilterOptions from '@/components/FilterOptions.vue';
 import SortingOptions from '@/components/SortingOptions.vue';
+import { baseApiUrl } from '@/utils/helpers';
 
 const comics = ref([]);
 const genres = ref([]);
@@ -37,8 +38,8 @@ const sortingMode = ref('asc');
 
 const readingListStore = useReadingListStore();
 
-const { data: comicData } = await axios.get('http://localhost:7777/comics');
-const { data: genreData } = await axios.get('http://localhost:7777/genres');
+const { data: comicData } = await axios.get(`${baseApiUrl}/comics`);
+const { data: genreData } = await axios.get(`${baseApiUrl}/genres`);
 
 comics.value = comicData;
 genres.value = genreData;
@@ -95,6 +96,7 @@ import axios from 'axios';
 import MangaItem from '@/components/MangaItem.vue';
 import FilterOptions from '@/components/FilterOptions.vue';
 import SortingOptions from '@/components/SortingOptions.vue';
+import { baseApiUrl } from '@/utils/helpers';
 
 export default {
   async setup() {
@@ -105,8 +107,8 @@ export default {
     const selectedSortingOption = ref('score');
     const sortingMode = ref('asc');
 
-    const { data: comicData } = await axios.get('http://localhost:7777/comics');
-    const { data: genreData } = await axios.get('http://localhost:7777/genres');
+    const { data: comicData } = await axios.get(`${baseApiUrl}/comics`);
+    const { data: genreData } = await axios.get(`${baseApiUrl}/genres`);
 
     comics.value = comicData;
     genres.value = genreData;

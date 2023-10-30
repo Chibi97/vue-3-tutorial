@@ -1,3 +1,5 @@
+export const baseApiUrl = import.meta.env.VITE_API_URL;
+
 export const findInSet = (set, callback) => {
   for (let item of set) {
     if (callback(item)) {

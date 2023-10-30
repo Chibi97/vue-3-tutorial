@@ -6,6 +6,7 @@ import {
   readingStateLabels,
 } from '@/utils/helpers';
 import dayjs from 'dayjs';
+import { baseApiUrl } from '@/utils/helpers';
 // import { computed, ref } from 'vue';
 
 export const useReadingListStore = defineStore('readingListStore', {
@@ -30,7 +31,7 @@ export const useReadingListStore = defineStore('readingListStore', {
   actions: {
     async fetchState() {
       this.currentlyReading = (
-        await axios.get('http://localhost:7777/currently-reading/')
+        await axios.get(`${baseApiUrl}/currently-reading/`)
       ).data;
       this.isLoading = false;
     },
@@ -53,7 +54,7 @@ export const useReadingListStore = defineStore('readingListStore', {
         };
         console.log('🚀 ~ comic added: ', payload);
         this.currentlyReading.push(payload);
-        await axios.post('http://localhost:7777/currently-reading/', payload);
+        await axios.post(`${baseApiUrl}/currently-reading/`, payload);
       }
     },
 
@@ -62,9 +63,7 @@ export const useReadingListStore = defineStore('readingListStore', {
         this.currentlyReading = this.currentlyReading.filter(
           (c) => c.id !== comicId,
         );
-        await axios.delete(
-          `http://localhost:7777/currently-reading/${comicId}`,
-        );
+        await axios.delete(`${baseApiUrl}/currently-reading/${comicId}`);
       }
     },
 
@@ -82,10 +81,7 @@ export const useReadingListStore = defineStore('readingListStore', {
         );
         this.currentlyReading.splice(comicIndex, 1, payload);
 
-        await axios.put(
-          `http://localhost:7777/currently-reading/${comicId}`,
-          payload,
-        );
+        await axios.put(`${baseApiUrl}/currently-reading/${comicId}`, payload);
       }
     },
   },
@@ -119,7 +115,7 @@ export const useReadingListStore = defineStore('readingListStore', {
 
 //   const fetchState = async () => {
 //     currentlyReading.value = (
-//       await axios.get('http://localhost:7777/currently-reading/')
+//       await axios.get(`${baseApiUrl}/currently-reading/`)
 //     ).data;
 //     isLoading.value = false;
 //   };
@@ -141,7 +137,7 @@ export const useReadingListStore = defineStore('readingListStore', {
 //       };
 //       console.log('🚀 ~ comic added: ', data);
 //       currentlyReading.value.push(data);
-//       axios.post('http://localhost:7777/currently-reading/', data);
+//       axios.post(`${baseApiUrl}/currently-reading/`, data);
 //     }
 //   };
 
@@ -150,7 +146,7 @@ export const useReadingListStore = defineStore('readingListStore', {
 //       currentlyReading.value = currentlyReading.value.filter(
 //         (c) => c.id !== comic.id
 //       );
-//       axios.delete('http://localhost:7777/currently-reading/', comic);
+//       axios.delete(`${baseApiUrl}/currently-reading/`, comic);
 //     }
 //   };
 
